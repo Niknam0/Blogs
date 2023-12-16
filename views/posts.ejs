@@ -6,14 +6,14 @@
             <span class="Time"><%= post.createdAt.toLocaleString()%></span>
             <span class="Author"><%= post.postAuthor%></span>
         </div>
-        <h1><a href="http://localhost:3000/post/<%= post._id%>"><%= post.postTitle%></a></h1>
+        <h1><a href="/post/<%= post._id%>"><%= post.postTitle%></a></h1>
         <p id="content">
             <%= post.postContent.substring(0,260)%>
             <%if(post.postContent.length > 260){%>
             ... "Текст обрізаний"
             <%}%>
         </p>
-        <a id="edit" href="http://localhost:3000/editPosts/<%= post._id%>">Редагувати</a>
+        <a id="edit" href="/editPosts/<%= post._id%>">Редагувати</a>
         <a id="delete" href="" data-id="<%= post._id %>">Видалити</a>
     </article>
     <% })%>
