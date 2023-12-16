@@ -6,7 +6,7 @@
         </div>
         <h1><%= post.postTitle%></a></h1>
         <p id="content"><%= post.postContent%></p>
-        <a id="add_comment" href="http://localhost:3000/createComment/<%= post._id%>">Коментувати</a>
+        <a id="add_comment" href="/createComment/<%= post._id%>">Коментувати</a>
     </article>
     <h1 id="title_comments">Коментарі</h1>
     <%if(comments){%>
@@ -16,7 +16,7 @@
             <span class="Time"><%= comment.createdAt.toLocaleString()%></span>
             <span class="Author"><%= comment.commentAuthor%></span>
         </div>
-        <a id="edit" href="http://localhost:3000/editComments/<%= comment._id%>">Редагувати</a>
+        <a id="edit" href="/editComments/<%= comment._id%>">Редагувати</a>
         <a id="delete" href="" data-id="<%= post._id %>">Видалити</a>
         <p id="content"><%= comment.commentContent%></p>
     </article>
