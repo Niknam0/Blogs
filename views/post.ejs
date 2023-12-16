@@ -1,0 +1,25 @@
+<%- include('./partials/header.ejs') %>   <%- include('./partials/nav.ejs') %> 
+    <article>
+        <div>
+            <span class="Time"><%= post.createdAt.toLocaleString()%></span>
+            <span class="Author"><%= post.postAuthor%></span>
+        </div>
+        <h1><%= post.postTitle%></a></h1>
+        <p id="content"><%= post.postContent%></p>
+        <a id="add_comment" href="http://localhost:3000/createComment/<%= post._id%>">Коментувати</a>
+    </article>
+    <h1 id="title_comments">Коментарі</h1>
+    <%if(comments){%>
+    <%comments.forEach(function(comment) {%>
+    <article id="comments_article">
+        <div>
+            <span class="Time"><%= comment.createdAt.toLocaleString()%></span>
+            <span class="Author"><%= comment.commentAuthor%></span>
+        </div>
+        <a id="edit" href="http://localhost:3000/editComments/<%= comment._id%>">Редагувати</a>
+        <a id="delete" href="" data-id="<%= post._id %>">Видалити</a>
+        <p id="content"><%= comment.commentContent%></p>
+    </article>
+    <% })%>
+    <%}%>
+<%- include('./partials/footer.ejs') %>  
