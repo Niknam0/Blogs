@@ -14,6 +14,7 @@ let {
     editPost,
     editComment,
     deletePost,
+    deleteComment
 } = require('../controllers/postControllers')
 
 
@@ -49,6 +50,6 @@ router.put('/editComments/:Id', editComment);
 
 router.delete('/posts/:Id', deletePost);
 
-router.delete('/post/:Id', deletePost);
+router.delete('/post/:Id', deleteComment);
 
 module.exports = router;

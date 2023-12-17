@@ -123,19 +123,27 @@ let editComment = (req,res)=>{
 let deletePost = (req,res)=>{
     page_parameters = {title: "posts", page_title: "posts", style: "/styles/stilePost.css"}
     let id = req.params.Id;
-    // Promise.all([
-    //     Post.findByIdAndDelet(id),
-    //     Comment.deleteMany({ pId: id })
-    // ])
-    // .then(([post, comments]) => {
-    //     res.render("post", { page_parameters, post, comments });
-    // })
-    // .catch((error) => {
-    //     console.log(error);
-    //     res.status(500).send('Internal Server Error');
-    // });
-    Post.findByIdAndDelete(id)
-    .then((post)=>res.render("/posts", page_parameters, post))
+    Promise.all([
+        Post.findByIdAndDelete(id),
+        Comment.deleteMany({ pId: id })
+    ])
+    .then(([post, comments]) => {
+        res.render("posts", { page_parameters, post, comments });
+    })
+    .catch((error) => {
+        console.log(error);
+        res.status(500).send('Internal Server Error');
+    });
+    // Post.findByIdAndDelete(id)
+    // .then((post)=>res.render("/posts", page_parameters, post))
+    // .catch((error)=>console.log(error));
+}
+
+let deleteComment = (req,res)=>{
+    page_parameters = {title: "post", page_title: "post", style: "/styles/stilePost.css"}
+    let id = req.params.Id;
+    Comment.findByIdAndDelete(id)
+    .then((comment)=>res.render(`/post/${id}`, page_parameters, comment))
     .catch((error)=>console.log(error));
 }
 
@@ -153,4 +161,5 @@ module.exports = {
     editPost,
     editComment,
     deletePost,
+    deleteComment,
 };
